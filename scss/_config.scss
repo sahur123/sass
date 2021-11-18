@@ -1,0 +1,37 @@
+$font-stack: Arial, Helvetica, sans-serif;
+$light-color: #f4f4f4;
+$primary-color: #1a70e7;
+$secondary-color: #ff8700;
+
+//set text color based on background color. if a light background then return dark text color and vice cersa.
+@function set-text-color($color) {
+    @if (lightness($color) > 70){
+        @return #333;
+    } @else{
+        @return #FFFFFF;
+    }
+} 
+
+//creating a mixin which set background and text color. Mixin is a function but does not return anything.
+@mixin set-background($color){
+    background-color: $color;
+    color: set-text-color($color);
+}
+
+//Set Margin and padding classes using loop
+$space-amount: (1,2,3,4,5);
+
+@each $space in $space-amount {
+    .m-#{$space} {
+        margin: #{$space}rem;
+    }
+    .my-#{$space} {
+        margin: #{$space}rem 0;
+    }
+    .p-#{$space} {
+        margin: #{$space}rem;
+    }
+    .py-#{$space} {
+        margin: #{$space}rem 0;
+    }
+}
